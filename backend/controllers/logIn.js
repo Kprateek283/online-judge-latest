@@ -23,6 +23,7 @@ const logIn = async (req, res) => {
     const token = jwt.sign({ id: user._id, email }, process.env.SECRET_KEY, {
       expiresIn: "1h",
     });
+    user.email = email;
     user.token = token;
     user.password = undefined;
 
@@ -31,11 +32,15 @@ const logIn = async (req, res) => {
       httpOnly: true,
     };
 
-    res.status(200).cookie("token", token, options).json({
-      message: "You have successfully logged in",
-      success: true,
-      token,
-    });
+    res.status(200)
+      .cookie("token", token, options)
+      .cookie("email", email, options)  // Set the email cookie
+      .json({
+        message: "You have successfully logged in",
+        success: true,
+        token,
+        email,
+      });
   } catch (error) {
     console.log(error);
     res.status(500).send("Internal Server Error");
