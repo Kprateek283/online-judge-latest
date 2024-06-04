@@ -7,6 +7,7 @@ import listProblems from '../controllers/listProblems.js';
 import individualProblem from "../controllers/individualProblem.js";
 import updateProfile from "../controllers/updateProfile.js";
 import deleteUser from "../controllers/deleteUser.js";
+import compiler from "../controllers/compiler.js";
 
 const router = express.Router();
 
@@ -18,5 +19,6 @@ router.get('/listProblems',listProblems);
 router.get('/individualProblem/:id', individualProblem);
 router.post('/updateProfile',updateProfile);
 router.post('/deleteUser',deleteUser);
+router.post('/compiler',compiler);
 
 export default router;

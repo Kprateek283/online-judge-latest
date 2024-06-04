@@ -9,19 +9,13 @@ const updateProfile = async (req, res) => {
     const user = await User.findOne({ email: originalEmail });
 
     // 3. Compare the name, email, role of original database with the updated name, updated email, updated role got from payload
-    const { updatedName, updatedEmail, updatedRole } = req.body;
+    const { updatedName,updatedRole } = req.body;
     const updatedFields = {};
 
     if (updatedName !== user.name) {
       // Update name if different
       user.name = updatedName;
       updatedFields.name = updatedName;
-    }
-
-    if (updatedEmail !== user.email) {
-      // Update email if different
-      user.email = updatedEmail;
-      updatedFields.email = updatedEmail;
     }
 
     if (updatedRole !== user.role) {
