@@ -26,7 +26,7 @@ const UpdateProfile = () => {
       };
 
       const response = await axios.post(
-        "http://13.48.178.52:8000/updateProfile",
+        "http://65.0.179.162:8000/updateProfile",
         payload
       );
 

@@ -20,7 +20,7 @@ const Register = () => {
             postData.secretKey = secretKey;
         }
 
-        axios.post('http://13.48.178.52:8000/register', postData)
+        axios.post('http://65.0.179.162:8000/register', postData)
             .then(result => {
                 setMessage(result.data.message);
                 if (result.data.message === "You have successfully registered") {

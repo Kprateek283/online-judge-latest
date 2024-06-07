@@ -29,7 +29,7 @@ const IndividualProblem = () => {
   useEffect(() => {
     const fetchProblemData = async () => {
       try {
-        const response = await axios.get(`http://13.48.178.52:8000/individualProblem/${id}`);
+        const response = await axios.get(`http://65.0.179.162:8000/individualProblem/${id}`);
         setProblemData(response.data);
       } catch (error) {
         console.error("Error fetching problem data:", error);

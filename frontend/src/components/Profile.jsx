@@ -9,7 +9,7 @@ const Profile = () => {
 
   const showProfile = async () => {
     try {
-      const response = await axios.get("http://13.48.178.52:8000/profile", {
+      const response = await axios.get("http://65.0.179.162:8000/profile", {
         withCredentials: true,
       });
       const data = response.data;

@@ -9,7 +9,7 @@ const Problems = () => {
   useEffect(() => {
     const fetchProblems = async () => {
       try {
-        const response = await axios.get("http://13.48.178.52:8000/listProblems");
+        const response = await axios.get("http://65.0.179.162:8000/listProblems");
         setProblems(response.data);
       } catch (error) {
         console.error("Error fetching problems:", error);

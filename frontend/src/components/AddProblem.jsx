@@ -62,7 +62,7 @@ const AddProblem = () => {
     // Make POST request to server to add problem
     try {
       const response = await axios.post(
-        "http://13.48.178.52:8000/addProblem",
+        "http://65.0.179.162:8000/addProblem",
         payload,
         { withCredentials: true }
       );
