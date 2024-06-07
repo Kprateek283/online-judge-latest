@@ -11,7 +11,7 @@ dotenv.config();
 const app = express();
 
 app.use(cors({
-    origin: 'https://online-judge-latest-olvx99asl-prateeks-projects-bfbc078c.vercel.app', // your frontend URL
+    origin: process.env.ORIGIN_URL,
     credentials: true
 }));
 

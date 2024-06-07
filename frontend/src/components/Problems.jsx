@@ -9,7 +9,7 @@ const Problems = () => {
   useEffect(() => {
     const fetchProblems = async () => {
       try {
-        const response = await axios.get("http://65.0.179.162:8000/listProblems");
+        const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/listProblems`);
         setProblems(response.data);
       } catch (error) {
         console.error("Error fetching problems:", error);
@@ -26,9 +26,6 @@ const Problems = () => {
   return (
     <div className="bg-gradient-to-b from-blue-400 via-blue-500 to-purple-500 min-h-screen">
       <div className="flex justify-around p-5 bg-gray-800">
-      <br></br>
-        <br></br>
-        <br></br>
         <Link className="btn btn-primary" to="/Profile">Profile</Link>
         <Link className="btn btn-primary" to="/Home">Home</Link>
         <Link className="btn btn-primary" to="/Login">Logout</Link>

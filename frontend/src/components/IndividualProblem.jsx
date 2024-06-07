@@ -29,7 +29,7 @@ const IndividualProblem = () => {
   useEffect(() => {
     const fetchProblemData = async () => {
       try {
-        const response = await axios.get(`http://65.0.179.162:8000/individualProblem/${id}`);
+        const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/individualProblem/${id}`);
         setProblemData(response.data);
       } catch (error) {
         console.error("Error fetching problem data:", error);
@@ -54,7 +54,7 @@ const IndividualProblem = () => {
     console.log("Payload:", payload);
 
     try {
-      const { data } = await axios.post(`http://13.201.189.6:5000/compiler`, payload, {
+      const { data } = await axios.post(`${import.meta.env.VITE_COMPILER_URL}/compiler`, payload, {
         withCredentials: true,
       });
       setOutput(data.output);
@@ -77,10 +77,6 @@ const IndividualProblem = () => {
   return (
     <div style={{ backgroundImage: "linear-gradient(#00d5ff,#0095ff,rgba(93,0,255,.555))" }} className="vh-100">
       <div className="d-flex justify-content-around p-5 bg-dark w-100">
-      <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
         <Link className="btn btn-primary" to="/Profile">Profile</Link>
         <Link className="btn btn-primary" to="/Home">Home</Link>
         <Link className="btn btn-primary" to="/Login">Logout</Link>

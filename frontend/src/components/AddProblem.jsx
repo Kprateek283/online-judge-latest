@@ -62,10 +62,11 @@ const AddProblem = () => {
     // Make POST request to server to add problem
     try {
       const response = await axios.post(
-        "http://65.0.179.162:8000/addProblem",
+        import.meta.env.VITE_BACKEND_URL,
         payload,
         { withCredentials: true }
       );
+      
       console.log("Problem added successfully!", response.data);
       // Clear form fields after successful submission
       setProblemStatement("");

@@ -20,7 +20,7 @@ const Register = () => {
             postData.secretKey = secretKey;
         }
 
-        axios.post('http://65.0.179.162:8000/register', postData)
+        axios.post(`${import.meta.env.VITE_BACKEND_URL}/register`, postData)
             .then(result => {
                 setMessage(result.data.message);
                 if (result.data.message === "You have successfully registered") {

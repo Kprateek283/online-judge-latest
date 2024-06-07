@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import Cookies from "js-cookie";
 
 const UpdateProfile = () => {
   const [name, setName] = useState("");
@@ -23,21 +22,21 @@ const UpdateProfile = () => {
         updatedName: name,
         originalEmail: originalEmail,
         updatedRole: role,
+        securityKey: role === "Admin" ? securityKey : null,
       };
 
       const response = await axios.post(
-        "http://65.0.179.162:8000/updateProfile",
+        `${import.meta.env.VITE_BACKEND_URL}/updateProfile`,
         payload
       );
 
       console.log(response.data);
       alert("Profile Updated Successfully");
 
-      Cookies.set("email", email);
-
       navigate("/Profile");
     } catch (error) {
       console.error("Error updating profile:", error);
+      setErrorMessage("An error occurred while updating the profile.");
     }
   };
 

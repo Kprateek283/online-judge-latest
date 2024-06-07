@@ -12,7 +12,7 @@ const Login = () => {
         event.preventDefault();
         
         try {
-            const response = await axios.post('http://65.0.179.162:8000/login', { email, password }, {
+            const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/login`, { email, password }, {
                 withCredentials: true, 
             });
             const data = response.data;

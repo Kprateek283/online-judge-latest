@@ -9,7 +9,7 @@ const Profile = () => {
 
   const showProfile = async () => {
     try {
-      const response = await axios.get("http://65.0.179.162:8000/profile", {
+      const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/profile`, {
         withCredentials: true,
       });
       const data = response.data;
@@ -32,7 +32,7 @@ const Profile = () => {
   // Function to handle deleting the account
   const handleDeleteAccount = async () => {
     try {
-      const response = await axios.post("http://13.48.178.52:8000/deleteUser", {
+      const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/deleteUser`, {
         email: profileData.email,
       });
       console.log(response.data); // Log the response from the server
