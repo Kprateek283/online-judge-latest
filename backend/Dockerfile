@@ -1,13 +1,8 @@
 FROM node:20.13.1-alpine
 
-RUN apk update && \
-    apk add --no-cache g++ \
-                       gcc \
-                       python3 \
-                       python3-dev \
-                       openjdk8
+RUN apk update
 
-WORKDIR /onlineJudge
+WORKDIR /backend
 
 COPY package.json .
 RUN npm install
