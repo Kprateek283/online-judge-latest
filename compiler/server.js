@@ -10,7 +10,7 @@ dotenv.config();
 const app = express();
 
 app.use(cors({
-    origin: 'https://online-judge-final.vercel.app',
+    origin: 'https://online-judge-final-gisseo1jb-prateeks-projects-bfbc078c.vercel.app',
     credentials: true
 }));
 
