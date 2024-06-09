@@ -1,5 +1,5 @@
 import { exec } from "child_process";
-import generateFile from "./generateFile.js";
+import generateFile from "../controllers/generateFile.js";
 import { v4 as uuid } from "uuid";
 
 const compiler = async (req, res) => {

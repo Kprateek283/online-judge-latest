@@ -26,6 +26,9 @@ const Problems = () => {
   return (
     <div className="bg-gradient-to-b from-blue-400 via-blue-500 to-purple-500 min-h-screen">
       <div className="flex justify-around p-5 bg-gray-800">
+        <br></br>
+        <br></br>
+        <br></br>
         <Link className="btn btn-primary" to="/Profile">Profile</Link>
         <Link className="btn btn-primary" to="/Home">Home</Link>
         <Link className="btn btn-primary" to="/Login">Logout</Link>

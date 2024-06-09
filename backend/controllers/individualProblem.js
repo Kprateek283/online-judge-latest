@@ -1,5 +1,3 @@
-// individualProblem.js
-
 import Problem from "../models/problem.js";
 
 const individualProblem = async (req, res) => {
@@ -14,17 +12,16 @@ const individualProblem = async (req, res) => {
       return res.status(404).json({ message: "Problem not found" });
     }
 
-    // Extract problem statement, difficulty, and first element of input/output test cases
-    const { problemStatement, difficulty, inputTestCases, outputTestCases } = problem;
-    const firstInputTestCase = inputTestCases.length > 0 ? inputTestCases[0] : null;
-    const firstOutputTestCase = outputTestCases.length > 0 ? outputTestCases[0] : null;
-
+    // Extract problem statement, difficulty, and test cases information
+    const { problemStatement, difficulty, numTestCases, inputTestCases, outputTestCases } = problem;
+    console.log(problem);
     // Return the required data in the response
     res.json({
       problemStatement,
       difficulty,
-      firstInputTestCase,
-      firstOutputTestCase
+      numTestCases, // Include numTestCases in the response
+      inputTestCases,
+      outputTestCases,
     });
   } catch (err) {
     res.status(500).json({ message: err.message });

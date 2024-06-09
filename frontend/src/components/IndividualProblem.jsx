@@ -22,14 +22,16 @@ const IndividualProblem = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [code, setCode] = useState(getDefaultBoilerplate(selectedLanguage));
-  const [input, setInput] = useState("");
   const [output, setOutput] = useState("");
   const [verdict, setVerdict] = useState("Not Applicable");
+  const [input, setInput] = useState("");
 
   useEffect(() => {
     const fetchProblemData = async () => {
       try {
-        const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/individualProblem/${id}`);
+        const response = await axios.get(
+          `${import.meta.env.VITE_BACKEND_URL}/individualProblem/${id}`
+        );
         setProblemData(response.data);
       } catch (error) {
         console.error("Error fetching problem data:", error);
@@ -51,12 +53,15 @@ const IndividualProblem = () => {
       code,
       input,
     };
-    console.log("Payload:", payload);
 
     try {
-      const { data } = await axios.post(`${import.meta.env.VITE_COMPILER_URL}/compiler`, payload, {
-        withCredentials: true,
-      });
+      const { data } = await axios.post(
+        `${import.meta.env.VITE_COMPILER_URL}/compiler`,
+        payload,
+        {
+          withCredentials: true,
+        }
+      );
       setOutput(data.output);
       setVerdict(data.verdict || "Code executed successfully");
     } catch (error) {
@@ -66,26 +71,78 @@ const IndividualProblem = () => {
     }
   };
 
+  const submitCode = async () => {
+    try {
+      console.log(problemData);
+
+      const payload = {
+        language: selectedLanguage.toLowerCase(),
+        code,
+        numTestCases:problemData.numTestCases,
+        inputTestCases:problemData.inputTestCases,
+        outputTestCases:problemData.outputTestCases,
+      };
+
+      // Log the payload to ensure it's being created correctly
+      console.log("Payload:", payload);
+
+      const { data } = await axios.post(
+        `${import.meta.env.VITE_COMPILER_URL}/submit`,
+        payload,
+        {
+          withCredentials: true,
+        }
+      );
+      console.log(data);
+      if (data.correct===1) {
+        setVerdict("Code accepted");
+      } else {
+        setVerdict(`Code not accepted, error on test case ${data.failedTestCase}`);
+      }
+    } catch (error) {
+      console.error("Error in submitCode:", error);
+      setVerdict("Error submitting code");
+    }
+  };
+
   const handleRunClick = async () => {
     await executeCode();
   };
 
-  const handleSubmitClick = () => {
-    // Handle the submit logic here
+  const handleSubmitClick = async () => {
+    await submitCode();
   };
 
   return (
-    <div style={{ backgroundImage: "linear-gradient(#00d5ff,#0095ff,rgba(93,0,255,.555))" }} className="vh-100">
+    <div
+      style={{
+        backgroundImage: "linear-gradient(#00d5ff,#0095ff,rgba(93,0,255,.555))",
+      }}
+      className="vh-100"
+    >
       <div className="d-flex justify-content-around p-5 bg-dark w-100">
-        <Link className="btn btn-primary" to="/Profile">Profile</Link>
-        <Link className="btn btn-primary" to="/Home">Home</Link>
-        <Link className="btn btn-primary" to="/Login">Logout</Link>
-        <Link className="btn btn-primary" to="/AddProblem">Add Problem</Link>
+        <Link className="btn btn-primary" to="/Profile">
+          Profile
+        </Link>
+        <Link className="btn btn-primary" to="/Home">
+          Home
+        </Link>
+        <Link className="btn btn-primary" to="/Login">
+          Logout
+        </Link>
+        <Link className="btn btn-primary" to="/AddProblem">
+          Add Problem
+        </Link>
       </div>
       <div className="d-flex h-100">
         {/* Left Side */}
         <div className="w-50 p-4">
-          <button className="btn btn-secondary mb-4" onClick={() => navigate(-1)}>Back</button>
+          <button
+            className="btn btn-secondary mb-4"
+            onClick={() => navigate(-1)}
+          >
+            Back
+          </button>
           {problemData ? (
             <div className="card p-4">
               <h2 className="mb-4">{problemData.title || "Problem Title"}</h2>
@@ -97,13 +154,15 @@ const IndividualProblem = () => {
               <div className="example-box mb-3">
                 <h4>Input</h4>
                 <div className="input-box p-3 mb-3 bg-light border rounded">
-                  {problemData.firstInputTestCase.join(", ")}
+                  {problemData.inputTestCases && problemData.inputTestCases[0]}
                 </div>
                 <h4>Output</h4>
                 <div className="output-box p-3 mb-3 bg-light border rounded">
-                  {problemData.firstOutputTestCase.join(", ")}
+                  {problemData.outputTestCases &&
+                    problemData.outputTestCases[0]}
                 </div>
               </div>
+
               {problemData.inputDescription && (
                 <>
                   <h3>Input Description:</h3>
@@ -124,14 +183,22 @@ const IndividualProblem = () => {
         {/* Right Side */}
         <div className="w-50 p-4 d-flex flex-column">
           <div className="d-flex mb-3">
-            <select className="form-select me-2" value={selectedLanguage} onChange={handleLanguageChange}>
+            <select
+              className="form-select me-2"
+              value={selectedLanguage}
+              onChange={handleLanguageChange}
+            >
               <option value="C">C</option>
               <option value="C++">C++</option>
               <option value="Java">Java</option>
               <option value="Python">Python</option>
             </select>
-            <button className="btn btn-primary me-2" onClick={handleRunClick}>Run</button>
-            <button className="btn btn-primary" onClick={handleSubmitClick}>Submit</button>
+            <button className="btn btn-primary me-2" onClick={handleRunClick}>
+              Run
+            </button>
+            <button className="btn btn-primary" onClick={handleSubmitClick}>
+              Submit
+            </button>
           </div>
           <textarea
             className="form-control mb-3"

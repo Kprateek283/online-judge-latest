@@ -1,23 +1,23 @@
 import express from "express";
 import cors from 'cors';
-import compiler from './compiler.js';
 import cookieParser from "cookie-parser";
 
 import dotenv from 'dotenv';
+import router from "./routes/routes.js";
 
 dotenv.config();
 
 const app = express();
 
 app.use(cors({
-    origin: 'https://online-judge-final-gisseo1jb-prateeks-projects-bfbc078c.vercel.app',
+    origin: 'http://localhost:3000',
     credentials: true
 }));
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cookieParser());
-app.use('/', compiler);
+app.use('/', router);
 
 const PORT = process.env.PORT;
 

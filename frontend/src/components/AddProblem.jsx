@@ -62,7 +62,7 @@ const AddProblem = () => {
     // Make POST request to server to add problem
     try {
       const response = await axios.post(
-        import.meta.env.VITE_BACKEND_URL,
+        import.meta.env.VITE_BACKEND_URLz,
         payload,
         { withCredentials: true }
       );
