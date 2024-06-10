@@ -10,7 +10,7 @@ dotenv.config();
 const app = express();
 
 app.use(cors({
-    origin: 'https://online-judge-latest-p6s8ioqo1-prateeks-projects-bfbc078c.vercel.app',
+    origin: 'https://onlinejudgeprateek.vercel.app',
     credentials: true
 }));
 

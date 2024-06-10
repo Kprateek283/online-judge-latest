@@ -120,6 +120,9 @@ const IndividualProblem = () => {
       }}
       className="vh-100"
     >
+       <br></br>
+      <br></br>
+      <br></br>
       <div className="d-flex justify-content-around p-5 bg-dark w-100">
         <Link className="btn btn-primary" to="/Profile">
           Profile

@@ -2,14 +2,14 @@ import User from "../models/user.js";
 
 const profile = async (req, res) => {
     try {
-        console.log("Cookies:", req.cookies); 
-        const userEmail = req.cookies.email;
+        const { email } = req.body;
+        console.log(email);
 
-        if (!userEmail) {
-            return res.status(400).json({ message: "Email cookie is missing" });
+        if (!email) {
+            return res.status(400).json({ message: "Email is missing in the request body" });
         }
 
-        const userProfile = await User.findOne({ email: userEmail });
+        const userProfile = await User.findOne({ email });
 
         if (!userProfile) {
             return res.status(404).json({ message: "User profile not found" });

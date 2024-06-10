@@ -207,6 +207,9 @@ const AddProblem = () => {
 
   return (
     <div className="container mx-auto mt-8">
+      <br></br>
+      <br></br>
+      <br></br>
       <h2 className="text-2xl font-bold mb-4">Add Problem</h2>
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>

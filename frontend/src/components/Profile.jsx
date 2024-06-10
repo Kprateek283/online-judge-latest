@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
+import cookie from 'react-cookie';
 
 const Profile = () => {
   const [profileData, setProfileData] = useState(null);
@@ -9,9 +10,19 @@ const Profile = () => {
 
   const showProfile = async () => {
     try {
-      const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/profile`, {
-        withCredentials: true,
-      });
+      // Retrieve the cookie manually if needed
+      const email = cookie.load('email');
+      console.log(email);
+      console.log(email);      
+      const response = await axios.post(
+        `${import.meta.env.VITE_BACKEND_URL}/profile`,
+        {
+          email:email,
+        },
+        {
+          withCredentials: true,
+        }
+      );
       const data = response.data;
       if (data.success) {
         setProfileData(data.profile);
@@ -32,9 +43,13 @@ const Profile = () => {
   // Function to handle deleting the account
   const handleDeleteAccount = async () => {
     try {
-      const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/deleteUser`, {
-        email: profileData.email,
-      });
+      console.log(profileData.email);
+      const response = await axios.post(
+        `${import.meta.env.VITE_BACKEND_URL}/deleteUser`,
+        {
+          email: profileData.email,
+        }
+      );
       console.log(response.data); // Log the response from the server
       navigate("/login"); // Redirect to login page after successful deletion
     } catch (error) {
@@ -49,6 +64,9 @@ const Profile = () => {
       }}
       className="min-h-screen"
     >
+      <br></br>
+      <br></br>
+      <br></br>
       <div className="flex justify-around p-5 bg-dark w-full">
         <Link className="btn btn-primary" to="/Problems">
           Problems List
@@ -91,10 +109,12 @@ const Profile = () => {
                 </div>
                 <div className="text-right">
                   <p className="text-2xl">
-                    <strong>Problems Solved:</strong> {profileData.problemsSolved}
+                    <strong>Problems Solved:</strong>{" "}
+                    {profileData.problemsSolved}
                   </p>
                   <p className="text-2xl">
-                    <strong>Problems Attempted:</strong> {profileData.problemsAttempted}
+                    <strong>Problems Attempted:</strong>{" "}
+                    {profileData.problemsAttempted}
                   </p>
                 </div>
               </div>

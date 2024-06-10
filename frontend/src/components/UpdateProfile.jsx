@@ -42,6 +42,9 @@ const UpdateProfile = () => {
 
   return (
     <div className="container mx-auto mt-8">
+       <br></br>
+      <br></br>
+      <br></br>
       <h2 className="text-2xl font-bold mb-4">Update Profile</h2>
       <p className="mb-4">
         Note: If you do not want to change your credentials then instead of new

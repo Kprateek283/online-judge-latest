@@ -23,8 +23,8 @@ const Login = () => {
       if (data.success) {
         console.log("Login Success");
         // Setting cookies manually (optional, but ensure they are being set correctly)
-        document.cookie = `email=${data.email}; path=/; SameSite=None; Secure`;
-        document.cookie = `token=${data.token}; path=/; SameSite=None; Secure`;
+        document.cookie = `email=${data.email}; path=/; SameSite=None; Secure`; httpOnly: false;
+        document.cookie = `token=${data.token}; path=/; SameSite=None; Secure`;httpOnly: false;
 
         alert("Login successful!");
         navigate("/Home");

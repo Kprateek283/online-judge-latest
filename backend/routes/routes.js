@@ -12,7 +12,7 @@ const router = express.Router();
 
 router.post('/register', signUp);
 router.post('/login', logIn);
-router.get('/profile', profile); 
+router.post('/profile', profile); 
 router.post('/addProblem', addProblem);
 router.get('/listProblems',listProblems);
 router.get('/individualProblem/:id', individualProblem);
