@@ -10,7 +10,7 @@ dotenv.config();
 const app = express();
 
 app.use(cors({
-    origin: 'http://localhost:3000',
+    origin: 'https://online-judge-latest-p6s8ioqo1-prateeks-projects-bfbc078c.vercel.app',
     credentials: true
 }));
 
