@@ -13,7 +13,7 @@ const UpdateProfile = () => {
 
   const handleUpdateProfile = async () => {
     try {
-      if (!name || !email || !originalEmail || !role) {
+      if (!name || !originalEmail || !role) {
         setErrorMessage("Please enter all the information.");
         return;
       }

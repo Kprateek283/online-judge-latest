@@ -1,23 +1,24 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
-import cookie from 'react-cookie';
+import cookie from "react-cookie";
 
 const Profile = () => {
   const [profileData, setProfileData] = useState(null);
   const [error, setError] = useState(null);
+
   const navigate = useNavigate();
 
   const showProfile = async () => {
     try {
       // Retrieve the cookie manually if needed
-      const email = cookie.load('email');
+      const email = cookie.load("email");
       console.log(email);
-      console.log(email);      
+      console.log(email);
       const response = await axios.post(
         `${import.meta.env.VITE_BACKEND_URL}/profile`,
         {
-          email:email,
+          email: email,
         },
         {
           withCredentials: true,
